@@ -9,7 +9,7 @@ To upload your assignments, please proceed to the "Load Results" page and carefu
 
 If you wish to view the leaderboard, visit the "Leaderboard" page. The leaderboard is ordered based on two criteria: the reference metric and the submission time, with priority given to the earliest submissions.
 
-Please note that these submissions are for practice and ranking purposes only and will not impact your final grade in any way.
+Please note that these submissions are for practice only and these rankings will not impact your final grade in any way.
 
 We hope you find this tool useful for tracking your progress and improving your performance.
 
