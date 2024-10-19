@@ -23,7 +23,7 @@ if uploaded_file is not None:
     st.write("Check CSV file:")
     st.dataframe(df)
 
-    if st.button("CSV file confirmation"):
+    if st.button("Confirm CSV file"):
         conn = st.connection("assignment_one", type=GSheetsConnection)
         true_labels = conn.read()
         if len(true_labels) != len(df):
@@ -37,7 +37,8 @@ if uploaded_file is not None:
                 classifica_accuracy = pd.read_csv("classifica_accuracy.csv", index_col=False, header=0)
                 classifica_accuracy['Timestamp'] = pd.to_datetime(classifica_accuracy['Timestamp'])
                 row = {'Student':name, "Accuracy":accuracy, "Timestamp":timestamp}
-                classifica_accuracy = classifica_accuracy.append(row, ignore_index=True)
+                classifica_accuracy = pd.concat([classifica_accuracy, pd.DataFrame([row])], ignore_index=True)
+                #classifica_accuracy = classifica_accuracy.append(row, ignore_index=True)
                 classifica_accuracy = classifica_accuracy.sort_values(['Accuracy'], ascending=[False])
                 classifica_accuracy = classifica_accuracy.sort_values(['Timestamp'], ascending=[True])
                 classifica_accuracy = classifica_accuracy.reset_index(drop=True)
@@ -49,7 +50,8 @@ if uploaded_file is not None:
                 classifica_f1 = pd.read_csv("classifica_f1.csv", index_col=False)
                 classifica_f1['Timestamp'] = pd.to_datetime(classifica_f1['Timestamp'])
                 row = {'Student':name, "F1":f1, "Timestamp":timestamp}
-                classifica_f1 = classifica_f1.append(row, ignore_index=True)
+                classifica_f1 = pd.concat([classifica_f1, pd.DataFrame([row])], ignore_index=True)
+                #classifica_f1 = classifica_f1.append(row, ignore_index=True)
                 classifica_f1 = classifica_f1.sort_values(['F1'], ascending=[False])
                 classifica_f1 = classifica_f1.reset_index(drop=True)
                 classifica_f1 = classifica_f1.sort_values(['Timestamp'], ascending=[True])
