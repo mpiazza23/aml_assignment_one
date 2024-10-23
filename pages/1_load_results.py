@@ -39,8 +39,8 @@ if uploaded_file is not None:
                 row = {'Student':name, "Accuracy":accuracy, "Timestamp":timestamp}
                 classifica_accuracy = pd.concat([classifica_accuracy, pd.DataFrame([row])], ignore_index=True)
                 #classifica_accuracy = classifica_accuracy.append(row, ignore_index=True)
-                classifica_accuracy = classifica_accuracy.sort_values(['Accuracy'], ascending=[False])
-                classifica_accuracy = classifica_accuracy.sort_values(['Timestamp'], ascending=[True])
+                classifica_accuracy = classifica_accuracy.sort_values(['Accuracy', 'Timestamp'], ascending=[False, True])
+                #classifica_accuracy = classifica_accuracy.sort_values(['Timestamp'], ascending=[True])
                 classifica_accuracy = classifica_accuracy.reset_index(drop=True)
                 classifica_accuracy.to_csv("classifica_accuracy.csv", index=False)
                 st.write("First 10 positions")
@@ -52,9 +52,9 @@ if uploaded_file is not None:
                 row = {'Student':name, "F1":f1, "Timestamp":timestamp}
                 classifica_f1 = pd.concat([classifica_f1, pd.DataFrame([row])], ignore_index=True)
                 #classifica_f1 = classifica_f1.append(row, ignore_index=True)
-                classifica_f1 = classifica_f1.sort_values(['F1'], ascending=[False])
+                classifica_f1 = classifica_f1.sort_values(['F1', 'Timestamp'], ascending=[False, True])
                 classifica_f1 = classifica_f1.reset_index(drop=True)
-                classifica_f1 = classifica_f1.sort_values(['Timestamp'], ascending=[True])
+                #classifica_f1 = classifica_f1.sort_values(['Timestamp'], ascending=[True])
                 classifica_f1.to_csv("classifica_f1.csv", index=False)
                 st.write("First 10 positions")
                 st.dataframe(classifica_f1)
